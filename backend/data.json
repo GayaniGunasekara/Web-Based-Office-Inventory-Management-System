@@ -21,6 +21,18 @@
       "name": "Tea",
       "category": "Kitchen Supplies",
       "initial": 1
+    },
+    {
+      "id": "1763747741559",
+      "name": "Tea",
+      "category": "Kitchen Supplies",
+      "initial": 5
+    },
+    {
+      "id": "1763747761041",
+      "name": "Coffee",
+      "category": "Kitchen Supplies",
+      "initial": 3
     }
   ],
   "purchases": [

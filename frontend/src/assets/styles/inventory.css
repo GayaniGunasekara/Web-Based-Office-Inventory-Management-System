@@ -20,7 +20,7 @@ th {
 
 .edit-btn {
     padding: 5px 10px;
-    background-color: #2196f3;
+    background-color: #500963;
     color: white;
     border: none;
     margin-right: 5px;
@@ -29,7 +29,7 @@ th {
 }
 
 .edit-btn:hover {
-    background-color: #0b7dda;
+    background-color: #781361;
 }
 
 .delete-btn {

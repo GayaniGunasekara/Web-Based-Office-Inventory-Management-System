@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem } from "@mui/materi
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import "../assets/styles/navbar.css"; // import CSS
+import "../assets/styles/navbar.css";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -16,8 +16,9 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="sticky" className="navbar">
+        <AppBar position="sticky" sx={{ backgroundColor: "#400272" }}>
             <Toolbar className="toolbar">
+                {/* Desktop Menu */}
                 <div className="desktop-menu">
                     <Button color="inherit" component={Link} to="/">Dashboard</Button>
                     <Button color="inherit" component={Link} to="/inventory">Inventory</Button>
@@ -25,6 +26,7 @@ export default function Navbar() {
                     <Button color="inherit" component={Link} to="/usage">Usage</Button>
                 </div>
 
+                {/* Mobile Menu */}
                 <div className="mobile-menu">
                     <IconButton color="inherit" onClick={handleMenu}>
                         <MenuIcon />

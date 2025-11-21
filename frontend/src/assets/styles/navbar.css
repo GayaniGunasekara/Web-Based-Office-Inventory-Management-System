@@ -1,23 +1,17 @@
+/* Navbar container */
 .navbar {
     width: 100%;
     top: 0;
-    /* sticky at top */
     z-index: 1000;
-    background-color: #1976d2;
-    /* MUI default blue, you can change */
 }
 
-.toolbar {
-    display: flex;
-    justify-content: space-between;
-}
-
+/* Toolbar: center menu items */
 .toolbar {
     display: flex;
     justify-content: center;
-    /* Center menu items horizontally */
+    /* center horizontally */
     align-items: center;
-    /* Center vertically */
+    /* center vertically */
 }
 
 /* Desktop menu */
@@ -42,36 +36,7 @@
     }
 }
 
-/* Optional: adjust Button styles */
-.MuiButton-root {
-    color: white;
-    font-weight: bold;
-}
-
-
-/* Desktop menu */
-.desktop-menu {
-    display: flex;
-    gap: 20px;
-}
-
-/* Mobile menu hidden on desktop */
-.mobile-menu {
-    display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .desktop-menu {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: flex;
-    }
-}
-
-/* Optional: adjust Button styles */
+/* Button styling */
 .MuiButton-root {
     color: white;
     font-weight: bold;

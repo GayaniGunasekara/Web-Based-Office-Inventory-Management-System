@@ -27,7 +27,7 @@
 }
 
 .action-btn.add {
-    background-color: #4caf50;
+    background-color: #505b03;
     color: white;
 }
 
@@ -36,12 +36,12 @@
 }
 
 .action-btn.use {
-    background-color: #2196f3;
+    background-color: #29046e;
     color: white;
 }
 
 .action-btn.use:hover {
-    background-color: #0b7dda;
+    background-color: #234e71;
 }
 
 .low-stock-list {
@@ -61,5 +61,5 @@
 
 .low-stock-list li {
     padding: 5px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #a2a1d5;
 }
