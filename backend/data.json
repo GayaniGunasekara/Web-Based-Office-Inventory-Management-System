@@ -1,0 +1,51 @@
+{
+  "inventory": [
+    {
+      "id": "1",
+      "name": "Item A",
+      "category": "Cat1",
+      "initial": 10,
+      "purchased": 5,
+      "used": 3
+    },
+    {
+      "id": "2",
+      "name": "Item B",
+      "category": "Cat2",
+      "initial": 20,
+      "purchased": 10,
+      "used": 2
+    },
+    {
+      "id": "1763738380680",
+      "name": "Tea",
+      "category": "Kitchen Supplies",
+      "initial": 1
+    }
+  ],
+  "purchases": [
+    {
+      "id": "1",
+      "date": "2025-11-21",
+      "item": "Item A",
+      "category": "Cat1",
+      "quantity": 5
+    },
+    {
+      "id": "1763738416847",
+      "date": "2025-11-19",
+      "item": "Notebooks",
+      "category": "Stationary",
+      "quantity": 3
+    }
+  ],
+  "usage": [
+    {
+      "id": "1",
+      "date": "2025-11-21",
+      "item": "Item B",
+      "category": "Cat2",
+      "quantityUsed": 2
+    }
+  ]
+}
