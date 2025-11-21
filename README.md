@@ -65,16 +65,17 @@ A responsive and user-friendly web application designed to simplify office inven
 ## 🛠️ Tech Stack
 - **Frontend:** React.js, Redux Toolkit, Vite  
 - **Backend:** Node.js  
-- **Styling:** CSS / TailwindCSS / Material UI  
+- **Styling:** CSS / Material UI  
 - **State Management:** Redux  
-- **Deployment:** Vercel  
+
 
 ---
 
-## 🚀 Installation & Setup
+## 🚀 Running the Project
 
-### 1️⃣ Install Dependencies  
-Run this inside both the `frontend` and `backend` folders (if they are separate):
+- Start the Backend
+node server.js
+- Start the Frontend
+npm run dev
 
-```bash
-npm install
+
