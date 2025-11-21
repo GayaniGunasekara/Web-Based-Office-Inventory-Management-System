@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPurchases } from "../redux/slices/purchaseSlice";
 import axios from "axios";
 
+import InputField from "../components/InputField";
+import Table from "../components/Table";
+import "../assets/styles/purchases.css";
+
 export default function Purchases() {
     const dispatch = useDispatch();
-    const items = useSelector((state) => state.purchases.items);
+    const items = useSelector(state => state.purchases.items);
     const [form, setForm] = useState({ date: "", item: "", category: "", quantity: 0 });
 
-    useEffect(() => {
-        dispatch(fetchPurchases());
-    }, [dispatch]);
+    useEffect(() => { dispatch(fetchPurchases()); }, [dispatch]);
 
     const handleAdd = async () => {
         await axios.post("http://localhost:5000/purchases", form);
@@ -19,28 +21,17 @@ export default function Purchases() {
     };
 
     return (
-        <div style={{ padding: 20 }}>
+        <div className="container">
             <h1>Purchase Log</h1>
-            <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
-            <input placeholder="Item Name" value={form.item} onChange={e => setForm({ ...form, item: e.target.value })} />
-            <input placeholder="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
-            <input type="number" placeholder="Quantity" value={form.quantity} onChange={e => setForm({ ...form, quantity: Number(e.target.value) })} />
-            <button onClick={handleAdd}>Add Purchase</button>
+            <div className="form">
+                <InputField label="Date" type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
+                <InputField label="Item Name" value={form.item} onChange={e => setForm({ ...form, item: e.target.value })} />
+                <InputField label="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
+                <InputField label="Quantity" type="number" value={form.quantity} onChange={e => setForm({ ...form, quantity: Number(e.target.value) })} />
+                <button onClick={handleAdd}>Add Purchase</button>
+            </div>
 
-            <table border={1} style={{ marginTop: 20 }}>
-                <thead>
-                    <tr>
-                        <th>Date</th><th>Item</th><th>Category</th><th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map(i => (
-                        <tr key={i.id}>
-                            <td>{i.date}</td><td>{i.item}</td><td>{i.category}</td><td>{i.quantity}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <Table columns={["date", "item", "category", "quantity"]} data={items} />
         </div>
     );
 }

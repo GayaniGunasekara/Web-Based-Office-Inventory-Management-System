@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsage } from "../redux/slices/usageSlice";
 import axios from "axios";
 
+import InputField from "../components/InputField";
+import Table from "../components/Table";
+import "../assets/styles/usage.css";
+
 export default function Usage() {
     const dispatch = useDispatch();
-    const items = useSelector((state) => state.usage.items);
+    const items = useSelector(state => state.usage.items);
     const [form, setForm] = useState({ date: "", item: "", category: "", quantityUsed: 0 });
 
-    useEffect(() => {
-        dispatch(fetchUsage());
-    }, [dispatch]);
+    useEffect(() => { dispatch(fetchUsage()); }, [dispatch]);
 
     const handleAdd = async () => {
         await axios.post("http://localhost:5000/usage", form);
@@ -19,28 +21,17 @@ export default function Usage() {
     };
 
     return (
-        <div style={{ padding: 20 }}>
+        <div className="container">
             <h1>Usage Log</h1>
-            <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
-            <input placeholder="Item Name" value={form.item} onChange={e => setForm({ ...form, item: e.target.value })} />
-            <input placeholder="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
-            <input type="number" placeholder="Quantity Used" value={form.quantityUsed} onChange={e => setForm({ ...form, quantityUsed: Number(e.target.value) })} />
-            <button onClick={handleAdd}>Add Usage</button>
+            <div className="form">
+                <InputField label="Date" type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
+                <InputField label="Item Name" value={form.item} onChange={e => setForm({ ...form, item: e.target.value })} />
+                <InputField label="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
+                <InputField label="Quantity Used" type="number" value={form.quantityUsed} onChange={e => setForm({ ...form, quantityUsed: Number(e.target.value) })} />
+                <button onClick={handleAdd}>Add Usage</button>
+            </div>
 
-            <table border={1} style={{ marginTop: 20 }}>
-                <thead>
-                    <tr>
-                        <th>Date</th><th>Item</th><th>Category</th><th>Quantity Used</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map(i => (
-                        <tr key={i.id}>
-                            <td>{i.date}</td><td>{i.item}</td><td>{i.category}</td><td>{i.quantityUsed}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <Table columns={["date", "item", "category", "quantityUsed"]} data={items} />
         </div>
     );
 }

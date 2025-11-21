@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchInventory } from "../redux/slices/inventorySlice";
 import axios from "axios";
 
-import { Table, TableHead, TableBody, TableRow, TableCell, Paper, Container } from "@mui/material";
+import InputField from "../components/InputField";
+import Table from "../components/Table";
+import "../assets/styles/inventory.css";
+
 export default function Inventory() {
     const dispatch = useDispatch();
     const items = useSelector(state => state.inventory.items);
@@ -17,44 +20,20 @@ export default function Inventory() {
         setForm({ name: "", category: "", initial: 0 });
     };
 
+    const columns = ["name", "category", "initial", "purchased", "used"];
+    const data = items.map(i => ({ ...i, currentStock: i.initial + i.purchased - i.used }));
+
     return (
-        <div style={{ padding: 20 }}>
+        <div className="container">
             <h1>Inventory</h1>
-            <input placeholder="Name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-            <input placeholder="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
-            <input type="number" placeholder="Initial" value={form.initial} onChange={e => setForm({ ...form, initial: Number(e.target.value) })} />
-            <button onClick={handleAdd}>Add</button>
+            <div className="form">
+                <InputField label="Name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                <InputField label="Category" value={form.category} onChange={e => setForm({ ...form, category: e.target.value })} />
+                <InputField label="Initial" type="number" value={form.initial} onChange={e => setForm({ ...form, initial: Number(e.target.value) })} />
+                <button onClick={handleAdd}>Add</button>
+            </div>
 
-
-            <Container sx={{ mt: 4 }}>
-                <Paper>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Category</TableCell>
-                                <TableCell>Initial</TableCell>
-                                <TableCell>Purchased</TableCell>
-                                <TableCell>Used</TableCell>
-                                <TableCell>Current Stock</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {items.map((i) => (
-                                <TableRow key={i.id}>
-                                    <TableCell>{i.name}</TableCell>
-                                    <TableCell>{i.category}</TableCell>
-                                    <TableCell>{i.initial}</TableCell>
-                                    <TableCell>{i.purchased}</TableCell>
-                                    <TableCell>{i.used}</TableCell>
-                                    <TableCell>{i.initial + i.purchased - i.used}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </Container>
-
+            <Table columns={[...columns, "currentStock"]} data={data} />
         </div>
     );
 }
